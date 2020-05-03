@@ -1,0 +1,22 @@
+body {
+  background-color: rgb(250, 250, 250);
+}
+
+.container {
+  width: 19%;
+}
+
+.main_container {
+  display: flex;
+}
+
+@media (max-width: 770px) {
+  .main_container {
+    margin: 0 10%;
+    display: flex;
+    flex-direction: column;
+  }
+  .container {
+    width: 100%;
+  }
+}

@@ -1,0 +1,11 @@
+.container {
+  margin-top: 6rem;
+}
+
+@media only screen and (max-width: 770px) {
+  .container {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

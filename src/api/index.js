@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const url = "https://covid19.mathdro.id/api";
+const url2 = "https://coronavirus-19-api.herokuapp.com/countries";
 
 export const fetchData = async (country) => {
   let changeableUrl = url;
@@ -46,34 +47,64 @@ export const fetchCountries = async () => {
   }
 };
 
-async function getCountries() {
-  let countries = [];
-  const ct = await axios.get(`${url}/countries`);
-  ct.data.countries.forEach((country) => {
-    countries.push(`${url}/countries/${country.name}`);
-  });
-  return countries;
-}
-
-async function getData(url) {
+export const todayCases = async () => {
   try {
-    const response = await axios.get(url);
-    return response.data;
+    const data = await axios.get(url2);
+    return data.data[0];
   } catch (error) {
-    console.log(error.response.data);
+    return error;
   }
-  return {};
-}
+};
 
-export async function getCovid19InfoForCountriesOver50K() {
-  const countrieInfo = [];
-  const countries = await getCountries();
-  for (let index = 0; index < countries.length; index++) {
-    const url = countries[index];
-    const info = await getData(url);
-    if (info.confirmed && info.confirmed.value >= 80000) {
-      countrieInfo.push(info);
-    }
-  }
-  return countrieInfo;
-}
+// async function getCountries() {
+//   let countries = [];
+//   const ct = await axios.get(`${url}/countries`);
+//   ct.data.countries.forEach((country) => {
+//     countries.push(`${url}/countries/${country.name}`);
+//   });
+//   return countries;
+// }
+
+// export async function getCovid19InfoForCountriesOver80K() {
+//   const countrieInfo = [];
+//   const countries = await getCountries();
+//   const arrayOfCountries = spliteArray(countries, 30);
+//   for (let index = 0; index < arrayOfCountries.length; index++) {
+//     const urls = arrayOfCountries[index];
+//     const arrayOfData = await makeRequest(urls);
+//     arrayOfData.forEach((info) => {
+//       if (info.confirmed && info.confirmed.value >= 80000)
+//         countrieInfo.push(info);
+//     });
+//   }
+//   return countrieInfo;
+// }
+
+// // splite the array to list of small array
+// function spliteArray(array, size) {
+//   const arrays = [];
+//   while (array.length > 0) {
+//     let chunk = array.splice(0, size);
+//     arrays.push(chunk);
+//   }
+//   return arrays;
+// }
+
+// async function makeRequest(array) {
+//   return await Promise.all(
+//     array.map((url) =>
+//       axios
+//         .get(url)
+//         .then((response) => {
+//           return response.data;
+//         })
+//         .catch((error) => {
+//           return error.response.data;
+//         })
+//     )
+//   );
+// }
+
+// // getCovid19InfoForCountriesOver80K().then(data => {
+// //   console.log(data);
+// // })

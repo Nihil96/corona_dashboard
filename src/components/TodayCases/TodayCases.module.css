@@ -1,0 +1,38 @@
+.container {
+  margin-top: 1.2rem;
+  text-align: center;
+  width: 25%;
+}
+
+.paper {
+  margin: 2rem 0.3rem;
+  text-align: left;
+  box-shadow: 5px 5px 10px 0px #ada4a4 !important;
+}
+
+.typo1 {
+  margin-left: 1rem !important;
+  margin-bottom: -1rem !important;
+  text-align: center;
+}
+
+.typo2 {
+  font-size: 5rem !important;
+  margin-left: 1rem !important;
+  color: rgb(68, 62, 62) !important;
+  text-align: center;
+}
+
+@media only screen and (max-width: 770px) {
+  .container {
+    margin: 5% 0 !important;
+    width: 100%;
+  }
+  .typo2 {
+    font-size: 2rem !important;
+  }
+
+  .typo1 {
+    margin-bottom: 0.1rem !important;
+  }
+}

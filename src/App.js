@@ -3,25 +3,27 @@ import {
   CountryPicker,
   Cards,
   Chart,
-  CountryTable,
   PieChart,
+  NavBar,
+  TodayCases,
 } from "./components";
 import styles from "./App.module.css";
-import { fetchData, getCovid19InfoForCountriesOver50K } from "./api/";
+import { fetchData, todayCases } from "./api/";
 
 class App extends Component {
   state = {
     data: {},
     country: "",
+    todayCases: {},
   };
 
   async componentDidMount() {
-    const data = await getCovid19InfoForCountriesOver50K();
-
+    const cases = await todayCases();
+    const data = await fetchData();
     this.setState({
+      todayCases: cases,
       data,
     });
-    console.log(data);
   }
 
   handleCountryChange = async (country) => {
@@ -34,19 +36,22 @@ class App extends Component {
   };
 
   render() {
-    const { data, country } = this.state;
+    const { data, country, todayCases } = this.state;
 
     return (
-      <div className={styles.main_container}>
-        <div className={styles.container}>
-          <CountryPicker handleCountryChange={this.handleCountryChange} />
-          <PieChart data={data} country={country} />
+      <div>
+        <NavBar />
+        <div className={styles.main_container}>
+          <div className={styles.container}>
+            <CountryPicker handleCountryChange={this.handleCountryChange} />
+            <PieChart data={data} country={country} />
+          </div>
+          <div>
+            <Cards data={data} />
+            <Chart data={data} country={country} />
+          </div>
+          <TodayCases todayCases={todayCases} />
         </div>
-        <div>
-          <Cards data={data} />
-          <Chart data={data} country={country} />
-        </div>
-        <CountryTable />
       </div>
     );
   }

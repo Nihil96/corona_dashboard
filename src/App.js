@@ -6,6 +6,7 @@ import {
   PieChart,
   NavBar,
   TodayCases,
+  Spinner,
 } from "./components";
 import styles from "./App.module.css";
 import { fetchData, todayCases } from "./api/";
@@ -15,6 +16,7 @@ class App extends Component {
     data: {},
     country: "",
     todayCases: {},
+    loading: false,
   };
 
   async componentDidMount() {
@@ -23,6 +25,7 @@ class App extends Component {
     this.setState({
       todayCases: cases,
       data,
+      loading: true,
     });
   }
 
@@ -36,22 +39,26 @@ class App extends Component {
   };
 
   render() {
-    const { data, country, todayCases } = this.state;
+    const { data, country, todayCases, loading } = this.state;
 
     return (
       <div>
         <NavBar />
-        <div className={styles.main_container}>
-          <div className={styles.container}>
-            <CountryPicker handleCountryChange={this.handleCountryChange} />
-            <PieChart data={data} country={country} />
+        {loading ? (
+          <div className={styles.main_container}>
+            <div className={styles.container}>
+              <CountryPicker handleCountryChange={this.handleCountryChange} />
+              <PieChart data={data} country={country} />
+            </div>
+            <div>
+              <Cards data={data} country={country} />
+              <Chart data={data} country={country} />
+            </div>
+            <TodayCases todayCases={todayCases} />
           </div>
-          <div>
-            <Cards data={data} />
-            <Chart data={data} country={country} />
-          </div>
-          <TodayCases todayCases={todayCases} />
-        </div>
+        ) : (
+          <Spinner />
+        )}
       </div>
     );
   }

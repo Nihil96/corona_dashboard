@@ -10,6 +10,10 @@
   box-shadow: 5px 5px 10px 0px #ada4a4 !important;
 }
 
+.typo {
+  margin-top: -1.2rem !important;
+}
+
 .infected {
   border-bottom: 10px solid rgb(153, 137, 196);
   text-align: center;
@@ -28,5 +32,8 @@
 @media only screen and (max-width: 770px) {
   .card {
     margin: 2% 0 !important;
+  }
+  .typo {
+    margin-top: 0rem !important;
   }
 }

@@ -4,7 +4,10 @@ import CountUp from "react-countup";
 import cx from "classnames";
 import styles from "./Cards.module.css";
 
-const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
+const Cards = ({
+  data: { confirmed, recovered, deaths, lastUpdate },
+  country,
+}) => {
   if (!confirmed) {
     return "Loading...";
   }
@@ -20,8 +23,12 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           className={cx(styles.card, styles.infected)}
         >
           <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Infected
+            <Typography
+              className={cx(styles.typo)}
+              color="textSecondary"
+              gutterBottom
+            >
+              Infected in {country}
             </Typography>
             <Typography variant="h5" component="h2">
               <CountUp
@@ -44,8 +51,12 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           className={cx(styles.card, styles.recovered)}
         >
           <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Recovered
+            <Typography
+              className={cx(styles.typo)}
+              color="textSecondary"
+              gutterBottom
+            >
+              Recovered in {country}
             </Typography>
             <Typography variant="h5" component="h2">
               <CountUp
@@ -68,8 +79,12 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           className={cx(styles.card, styles.deaths)}
         >
           <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Deaths
+            <Typography
+              className={cx(styles.typo)}
+              color="textSecondary"
+              gutterBottom
+            >
+              Deaths in {country}
             </Typography>
             <Typography variant="h5" component="h2">
               <CountUp

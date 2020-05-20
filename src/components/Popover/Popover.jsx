@@ -26,7 +26,6 @@ export default function SimplePopover() {
         variant="contained"
         color="primary"
         onClick={handleClick}
-        className={styles.button}
       >
         <PersonIcon /> &nbsp; <Typography>Author</Typography>
       </Button>

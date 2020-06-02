@@ -7,6 +7,7 @@ import {
   NavBar,
   TodayCases,
   Spinner,
+  WorldMap,
 } from "./components";
 import styles from "./App.module.css";
 import { fetchData, todayCases } from "./api/";
@@ -59,6 +60,7 @@ class App extends Component {
         ) : (
           <Spinner />
         )}
+        <WorldMap />
       </div>
     );
   }

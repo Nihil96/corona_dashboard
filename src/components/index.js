@@ -5,3 +5,4 @@ export { default as PieChart } from "./PieChart/PieChart";
 export { default as NavBar } from "./NavBar/NavBar";
 export { default as TodayCases } from "./TodayCases/TodayCases";
 export { default as Spinner } from "./Spinner/Spinner";
+export { default as WorldMap } from "./WorldMap/WorldMap";

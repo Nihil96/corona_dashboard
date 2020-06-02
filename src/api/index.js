@@ -2,6 +2,7 @@ import axios from "axios";
 
 const url = "https://covid19.mathdro.id/api";
 const url2 = "https://coronavirus-19-api.herokuapp.com/countries";
+const url3 = "https://corona.lmao.ninja/v2/countries";
 
 export const fetchData = async (country) => {
   let changeableUrl = url;
@@ -51,6 +52,15 @@ export const todayCases = async () => {
   try {
     const data = await axios.get(url2);
     return data.data[0];
+  } catch (error) {
+    return error;
+  }
+};
+
+export const fetchCountriesForMap = async () => {
+  try {
+    const data = await axios.get(url3);
+    return data.data;
   } catch (error) {
     return error;
   }
